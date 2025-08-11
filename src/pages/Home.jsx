@@ -13,13 +13,13 @@ export default function Home() {
   useEffect(() => {
     getChats().then(res => setChats(res.data));
 
-    socket.on("newMessage", (msg) => {
+    socket.on("new_message", (msg) => {
       if (msg.wa_id === selected) {
         setMessages(prev => [...prev, msg]);
       }
     });
 
-    return () => socket.off("newMessage");
+    return () => socket.off("new_message");
   }, [selected]);
 
   useEffect(() => {
